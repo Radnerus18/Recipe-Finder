@@ -1,0 +1,9 @@
+npm install @reduxjs/toolkit react-redux
+create store - configurestore, export RootState, AppDispatch
+Provide the store to Index.tsx
+Wrap the <App/> within <Provider></>
+create slice file in features folder.
+create an initialstate for varaible
+create sliceaction
+export actions and reducer
+provide slicereducer to store
