@@ -1,9 +1,13 @@
+#root{
+  background: url(assets/images/auth_bg4.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
 .App {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   padding: 10px 20px;
   text-align: center;
-  margin: 10px;
+  background-color: aliceblue;
 }
 .mainSection{
   border: 1px solid #77777749;
