@@ -1,0 +1,72 @@
+.ask-your-friend {
+    width: 100%;
+    margin: 10px auto;
+    padding: 20px 5px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    font-family: f1;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    background: url('./assets//images/ai-bg.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+  
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+  }
+  
+  .messages {
+    height: 280px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    display: flex    ;
+    flex-direction: column;
+  }
+  
+  .user-message {
+    background-color: #e0f7fa;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    width: max-content;
+    max-width: 170px;
+
+  }
+  
+  .ai-message {
+    background-color: #fff3e0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    max-width: 170px;
+    min-width: max-content;
+  }
+  
+  form {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  input {
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #004d40;
+  }
+  

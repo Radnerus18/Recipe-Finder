@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -12,6 +12,8 @@ import { useSelector } from "react-redux";
 import createDOMPurify from "dompurify";
 import { FaBell } from 'react-icons/fa';
 import { RiSettingsLine } from "react-icons/ri";
+import Skeleton  from 'react-loading-skeleton';
+
 const purify = createDOMPurify(window)
 
 const Middle = () => {
@@ -27,7 +29,6 @@ const Middle = () => {
     image: string;
     imagetype: string;
   }
-  console.log(selected_Cuisine);
   const api_values = {
     apiUrl: process.env.REACT_APP_API_URL,
     apiKey: process.env.REACT_APP_API_KEY,
@@ -64,12 +65,10 @@ const Middle = () => {
         api_values.apiKey
     );
     setRecipe(recepi_resp.data.results);
-    console.log('recepi_resp.data.results',recepi_resp.data.results)
   };
   const recepi_info = async(id:any)=>{
     let recepiInfo = await axios.get(api_values.apiUrl+'/'+id+'/information?apiKey='+api_values.apiKey)
     setInfo(recepiInfo.data.instructions)
-    console.log(recepiInfo.data)
   }
   return (
     <div className="mainSection">
@@ -87,12 +86,29 @@ const Middle = () => {
         </div>
         <div className="profile_area">
           <div><FaBell/></div>
-          <div><RiSettingsLine/></div>
-          <div></div>
+          <div>
+            <p>U</p>
+          </div>
         </div>
       </section>
+      <div className="today">
+        Hello
+      </div>
       <div className="recepiSection">
-        {recipe.map((e, i) => (
+        {recipe.length === 0?(
+          Array.from({ length: 9 }).map((_, i) => (
+            <Card key={i} className="recipeCard" sx={{ width: 345 }}>
+              <CardActionArea>
+                <Skeleton width={345} height={345} />
+                <CardContent className="content">
+                  <Skeleton width="60%" height={20} style={{ marginTop: 10 }} count={1}/>
+                  <Skeleton width="80%" height={20} style={{ marginTop: 5 }} count={1}/>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          ))
+        ):        
+        recipe.map((e, i) => (
           <Card className="recipeCard" key={e.id} sx={{ width: 345 }} onClick={()=>recepi_info(e.id)}>
             <CardActionArea>
               <CardMedia className="cardImg"

@@ -1,0 +1,115 @@
+/* General Styles for Landing Page */
+.landingPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 94vw;
+    height: 100vh; /* Full height of the viewport */
+    background-color: #f7f7f7; /* Light background */
+    padding: 0 2rem;
+    box-sizing: border-box;
+  }
+  
+  .landingPage .left-column,
+  .landingPage .right-column {
+    flex: 1;
+  }
+  
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    max-width: 32%; /* Ensures it stays to the left side */
+  }
+  
+  .left-column h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333; /* Dark text color */
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  .left-column p {
+    font-size: 1.2rem;
+    color: #555; /* Slightly lighter text */
+    margin-bottom: 2rem;
+  }
+  
+  .left-column .cta-button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background-color: #e76f51; /* Warm accent color */
+    color: white;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .left-column .cta-button:hover {
+    background-color: #ff5722; /* Slightly darker accent color on hover */
+  }
+  
+  .right-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 2rem;
+    background-image: url(./assets/images/landing_page-img.jpg);
+    background-size: cover;
+    height: 100%;
+    max-width: 50%;
+    background-repeat: no-repeat;
+  }
+  
+  .right-column img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .right-column img:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+  }
+  
+  /* Mobile responsive styles */
+  @media (max-width: 768px) {
+    .landingPage {
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+  
+    .left-column {
+      max-width: 100%; /* Full width on mobile */
+      text-align: center;
+    }
+  
+    .right-column {
+      max-width: 100%; /* Full width on mobile */
+      padding-left: 0;
+      margin-top: 2rem;
+    }
+  
+    .left-column h1 {
+      font-size: 2.5rem;
+    }
+  
+    .left-column p {
+      font-size: 1rem;
+    }
+  
+    .left-column .cta-button {
+      padding: 1rem 2rem;
+    }
+  
+    .right-column img {
+      max-width: 100%;
+    }
+  }
+  
