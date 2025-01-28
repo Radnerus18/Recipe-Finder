@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { Button } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -11,7 +10,8 @@ import Paper from "@mui/material/Paper";
 import type { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 import createDOMPurify from "dompurify";
-
+import { FaBell } from 'react-icons/fa';
+import { RiSettingsLine } from "react-icons/ri";
 const purify = createDOMPurify(window)
 
 const Middle = () => {
@@ -74,30 +74,35 @@ const Middle = () => {
   return (
     <div className="mainSection">
       <section className="navArea">
-        <h1>Recepi</h1>
-        <div>
+        <div className="searchSection">
           <input
+          className="searchBar"
             onChange={(e) => setQuery(e.target.value)}
             type="search"
             name="recepiSearch"
             id="s1"
             placeholder="search recepies"
           />
-          <Button onClick={findRecepi}>Search</Button>
+          <button className="searchButton" onClick={findRecepi}>Search</button>
+        </div>
+        <div className="profile_area">
+          <div><FaBell/></div>
+          <div><RiSettingsLine/></div>
+          <div></div>
         </div>
       </section>
       <div className="recepiSection">
         {recipe.map((e, i) => (
-          <Card key={e.id} sx={{ width: 345 }} onClick={()=>recepi_info(e.id)}>
+          <Card className="recipeCard" key={e.id} sx={{ width: 345 }} onClick={()=>recepi_info(e.id)}>
             <CardActionArea>
-              <CardMedia
+              <CardMedia className="cardImg"
                 component="img"
                 height="140"
                 image={e.image}
                 alt={e.title}
               />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+              <CardContent className="content">
+                <Typography className="h3" gutterBottom variant="h5" component="div">
                   {e.title}
                 </Typography>
               </CardContent>
