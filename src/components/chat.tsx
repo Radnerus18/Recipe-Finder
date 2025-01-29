@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import '../AiChat.css'
-
+import axios from 'axios'
 
 const Chat = () => {
     interface Msg{
@@ -20,7 +20,7 @@ const Chat = () => {
     
       const sendToAI = async (userInput) => {
         // Placeholder for actual AI call
-        const response = await fetch("/api/chat", {
+        const response = await fetch("http://localhost:4000/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ query: userInput })

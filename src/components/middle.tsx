@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios ,{AxiosRequestConfig } from "axios";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -38,18 +38,16 @@ const Middle = () => {
   const [info,setInfo] = useState<HTMLElement | null>(null)
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 6;
+ 
+
   const recipeLoader = async () => {
     try {
-      let resp = await axios.get(
-        api_values.apiUrl +
-          "/complexSearch?cuisine=" +
-          selected_Cuisine +
-          "&query=" +
-          query +
-          "&apiKey=" +
-          api_values.apiKey
-      );
-      setRecipe(resp.data.results);
+      let resp = await axios.post('http://localhost:4000/api/foodapi',{
+        cuisine:selected_Cuisine,query:query,diet:selected_Diet
+    
+      });
+      console.log('resp.data',resp.data)
+      setRecipe(resp.data.data);
     } catch (err) {
       console.log("Error", err);
     }
@@ -57,17 +55,7 @@ const Middle = () => {
   useEffect(() => {
     recipeLoader();
   }, [selected_Cuisine]);
-  const findRecepi = async () => {
-    let recepi_resp = await axios.get(
-      api_values.apiUrl +
-        "/complexSearch?cuisine="+
-          selected_Cuisine +"&query=" +
-        query + "&diet="+selected_Diet+
-        "&apiKey=" +
-        api_values.apiKey
-    );
-    setRecipe(recepi_resp.data.results);
-  };
+  
   const recepi_info = async(id:any)=>{
     let recepiInfo = await axios.get(api_values.apiUrl+'/'+id+'/information?apiKey='+api_values.apiKey)
     setInfo(recepiInfo.data.instructions)
@@ -95,7 +83,7 @@ const Middle = () => {
             id="s1"
             placeholder="search recepies"
           />
-          <button className="searchButton" onClick={findRecepi}>Search</button>
+          <button className="searchButton" onClick={recipeLoader}>Search</button>
         </div>
         <div className="profile_area">
           <div><FaBell/></div>
