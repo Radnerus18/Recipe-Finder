@@ -51,7 +51,7 @@ const Chat = () => {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask me anything!"
           />
-          <button type="submit">Send</button>
+          <button type="submit" className='ai-send-btn'>Send</button>
         </form>
       </div>
     </div>

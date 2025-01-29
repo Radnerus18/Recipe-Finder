@@ -155,6 +155,7 @@ h1 {
 
 .recepiSection .recipeCard {
   width: 30%;
+  
   background-color: #ffffff;
   border-radius: 12px;
   overflow: hidden;
@@ -178,6 +179,7 @@ h1 {
 .recepiSection .recipeCard .content {
   padding: 20px;
   text-align: left;
+  height: 70px;
 }
 
 .recepiSection .recipeCard .content .h3 {
@@ -204,6 +206,85 @@ h1 {
 
 .recepiSection .recipeCard .content .read-more:hover {
   color: #ffcc00;
+}
+/* Container for pagination */
+.react-paginate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  font-family: f3;
+  color: #ff5722;
+}
+
+/* Pagination items */
+.react-paginate li {
+  margin: 0 5px;
+}
+
+/* Style for individual page numbers */
+.react-paginate li a {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+/* Hover effect for page numbers */
+.react-paginate li a:hover {
+  transform: scale(1.05);
+}
+
+/* Active page (currently selected page) */
+.react-paginate li.selected a {
+  background-color: #e74c3c; /* Red background for active page */
+  border-color: #e74c3c;
+  color: #fff;
+}
+
+/* Style for the previous and next buttons */
+.react-paginate .previous,
+.react-paginate .next {
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  /* border: 2px solid #ff5722; */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect for previous and next buttons */
+.react-paginate .previous:hover,
+.react-paginate .next:hover {
+  transform: scale(1.05);
+  border-color: #ff5722;
+}
+
+/* Disabled state for previous and next buttons */
+.react-paginate .disabled{
+  color: #bdc3c7; /* Gray for disabled state */
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Style for the break label (i.e., "...")
+ */
+.react-paginate li.break {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #bdc3c7; /* Gray color for "..." */
+  cursor: not-allowed; /* Disable clicking */
 }
 
 .leftpanel{

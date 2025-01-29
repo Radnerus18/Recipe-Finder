@@ -11,8 +11,8 @@ import type { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 import createDOMPurify from "dompurify";
 import { FaBell } from 'react-icons/fa';
-import { RiSettingsLine } from "react-icons/ri";
 import Skeleton  from 'react-loading-skeleton';
+import ReactPaginate from 'react-paginate';
 
 const purify = createDOMPurify(window)
 
@@ -36,6 +36,8 @@ const Middle = () => {
   const [query, setQuery] = useState<String>("");
   const [recipe, setRecipe] = useState<Recepi[]>([]);
   const [info,setInfo] = useState<HTMLElement | null>(null)
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 6;
   const recipeLoader = async () => {
     try {
       let resp = await axios.get(
@@ -70,6 +72,17 @@ const Middle = () => {
     let recepiInfo = await axios.get(api_values.apiUrl+'/'+id+'/information?apiKey='+api_values.apiKey)
     setInfo(recepiInfo.data.instructions)
   }
+  const endOffset = itemOffset + itemsPerPage;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  const currentItems = recipe.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(recipe.length / itemsPerPage);
+  const handlePageClick = (event:any) => {
+    const newOffset = (event.selected * itemsPerPage) % recipe.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
   return (
     <div className="mainSection">
       <section className="navArea">
@@ -95,7 +108,7 @@ const Middle = () => {
         Hello
       </div>
       <div className="recepiSection">
-        {recipe.length === 0?(
+        {currentItems.length === 0?(
           Array.from({ length: 9 }).map((_, i) => (
             <Card key={i} className="recipeCard" sx={{ width: 345 }}>
               <CardActionArea>
@@ -108,7 +121,7 @@ const Middle = () => {
             </Card>
           ))
         ):        
-        recipe.map((e, i) => (
+        currentItems.map((e, i) => (
           <Card className="recipeCard" key={e.id} sx={{ width: 345 }} onClick={()=>recepi_info(e.id)}>
             <CardActionArea>
               <CardMedia className="cardImg"
@@ -144,7 +157,18 @@ const Middle = () => {
 
             
           </Paper>
+
         </Box>
+        <ReactPaginate
+        className="react-paginate"
+        breakLabel="..."
+        nextLabel=">>"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="<<"
+        renderOnZeroPageCount={null}
+      />
     </div>
   );
 };
